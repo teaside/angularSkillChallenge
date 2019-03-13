@@ -6,24 +6,16 @@ const routes: Routes = [
   {
       path: '',
       component: BaseComponent,
-      // children: [
-      //     {
-      //         path: 'measurements',
-      //         loadChildren: './modules/measurements/measurements.module#MeasurementsModule'
-      //     },
-      //     {
-      //         path: 'filters',
-      //         loadChildren: './modules/filters/filters.module#FiltersModule'
-      //     },
-      //     {
-      //         path: 'equipment',
-      //         loadChildren: './modules/equipment/equipment.module#EquipmentModule'
-      //     },
-      //     {
-      //         path: 'settings',
-      //         loadChildren: './modules/settings/settings.module#SettingsModule'
-      //     }
-      // ]
+      children: [
+          {
+              path: 'main',
+              loadChildren: './main/main.module#MainModule'
+          },
+          {
+              path: 'details',
+              loadChildren: './details/details.module#DetailsModule'
+          }
+      ]
   }, {
       path: 'login',
       loadChildren: './login/login.module#LoginModule'
