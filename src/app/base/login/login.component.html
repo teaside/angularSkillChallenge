@@ -1,16 +1,33 @@
 <div class="wrapper">
   <mat-card class="form-login">
-    <div class="form-login__error-text">
-      <span class="text-error">err</span>
-    </div>
-      <mat-form-field class="login__input">
-        <input matInput placeholder="Enter your Username" #login type="text">
-      </mat-form-field>
-      <mat-form-field class="login__input">
-        <input matInput placeholder="Enter your password" #password>
-        <mat-icon matSuffix></mat-icon>
-      </mat-form-field>
-    <button mat-raised-button color="primary">Login</button>
-    <mat-progress-bar mode="buffer"></mat-progress-bar>
+    <mat-toolbar color="primary">
+      <span class="fill-remaining-space">Authorization</span>
+    </mat-toolbar>
+    
+    <div class="container" novalidate> 
+      <form [formGroup]="formGroup" (ngSubmit)="onSubmit(formGroup.value)" class="form-login__content">
+    
+        <mat-form-field class="form-element">
+          <input matInput placeholder="Email address" formControlName="email">
+          <mat-error *ngIf="!formGroup.controls['email'].valid && formGroup.controls['email'].touched">
+            {{ getErrorEmail() }}
+          </mat-error>
+        </mat-form-field>
+    
+        <mat-form-field class="form-element">
+          <input matInput placeholder="Password" formControlName="password">
+          <mat-hint *ngIf="!formGroup.valid">Choose a password of at least eight characters, one uppercase letter and one number</mat-hint>
+          <mat-error *ngIf="!formGroup.controls['password'].valid && formGroup.controls['password'].touched">
+            {{ getErrorPassword() }}
+          </mat-error>
+        </mat-form-field>
+    
+        <div class="form-element">
+          <button mat-raised-button color="primary" type="submit" class="button" [disabled]="!formGroup.valid">Log in</button>
+        </div>
+    
+      </form>
+    </div>    
+    <mat-progress-bar *ngIf="isShowSpinner" mode="buffer"></mat-progress-bar>
   </mat-card>
 </div>

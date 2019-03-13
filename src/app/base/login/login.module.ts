@@ -12,19 +12,18 @@ import {
   MatIconModule,
   MatProgressBarModule,
   MatProgressSpinnerModule } from '@angular/material';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [
+    ReactiveFormsModule,
     CommonModule,
     LoginRoutingModule,
     MatButtonModule,
-    MatCheckboxModule,
     MatToolbarModule,
     MatCardModule,
     MatInputModule,
-    MatIconModule,
     MatProgressBarModule,
-    MatProgressSpinnerModule,
   ],
   exports: [],
   declarations: [LoginComponent],
